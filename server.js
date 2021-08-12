@@ -3,6 +3,7 @@ const server = jsonServer.create()
 const path = require('path')
 const router = jsonServer.router(path.join(__dirname, 'db.json'))
 const middlewares = jsonServer.defaults()
+const kakaoAuth = require('./kakao_auth.js');
 
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares)
@@ -16,4 +17,15 @@ server.use(router)
 let port = 80;
 server.listen(port, () => {
   console.log(`JSON Server is running, port(${port})`)
+})
+
+app.get('/callbacks/kakao/sign_in', async (request, response) => {
+  //Authentication Code 받아 돌려줄 api
+  const redirect = 'webauthcallback://success?${new URLSearchParams(request.query).toString()}';
+  console.log(redirect);
+  response.redirect(307,redirect)
+
+})
+app.post('/callbacks/kakao/token', async (request, response) => {
+  //발급 받은 kakao AccessCode로 사용자 확인후 firebase 로 custom token 생성하기 위한 api
 })
