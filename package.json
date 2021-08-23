@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "\u001b[B\u001b[B"
+    "test": "\u001b[B\u001b[B",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +13,8 @@
     "json-server": "^0.16.3"
   },
   "dependencies": {
+    "async": "^3.2.1",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "firebase": "^8.9.1",
